@@ -87,28 +87,38 @@
     </div>
   </div>
 
-  <script>
-    function checkGift() {
-      const selected = document.querySelector('input[name="gift"]:checked');
-      const feedback = document.getElementById('feedback');
+<script>
+  function checkGift(event) {
+    event.preventDefault(); // impede que o formulário recarregue a página
 
-      if (!selected) {
-        feedback.textContent = 'Escolhe uma prenda para continuar, ó romântico!';
-        return;
-      }
+    const selected = document.querySelector('input[name="gift"]:checked');
+    const feedback = document.getElementById('feedback');
 
-      if (selected.value === "1") {
-feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br>';
-
-const nextBtn = document.createElement('button');
-nextBtn.textContent = 'Avançar para o Capítulo V';
-nextBtn.style.marginTop = '20px';
-nextBtn.onclick = () => window.location.href = './pagina6.html';
-feedback.appendChild(nextBtn);
-      } else {
-        feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
-      }
+    if (!selected) {
+      feedback.textContent = 'Escolhe uma prenda para continuar, ó romântico!';
+      return;
     }
-  </script>
+
+    if (selected.value === "1") {
+      feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br>';
+
+      const nextBtn = document.createElement('button');
+      nextBtn.textContent = 'Avançar para o Capítulo V';
+      nextBtn.style.marginTop = '20px';
+      nextBtn.onclick = () => {
+        window.location.href = 'pagina6.html';
+      };
+      feedback.appendChild(nextBtn);
+    } else {
+      feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
+    }
+  }
+
+  // garantir que o evento é corretamente ligado ao botão
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('form button');
+    btn.addEventListener('click', checkGift);
+  });
+</script>
 </body>
 </html>
