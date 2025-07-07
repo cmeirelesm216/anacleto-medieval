@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo II — A Profecia da Princesa Perfeita</title>
+  <style>
+    body {
+      background-color: #f8f5f0;
+      font-family: 'Georgia', serif;
+      color: #2f2f2f;
+      padding: 40px;
+    }
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background-color: #ffffffdd;
+      padding: 50px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #3e5f1b;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.7em;
+      margin-bottom: 20px;
+    }
+    .quiz {
+      margin-top: 40px;
+    }
+    .quiz label {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    .submit-button {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #6b8e23;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Capítulo II — A Profecia da Princesa Perfeita</h1>
+
+    <p>Naquela mesma noite, o Anacleto partiu numa missão secreta. Voou por montes, vales e geladarias, até que encontrou... uma princesa. Mas não uma qualquer!</p>
+
+    <p>Era uma jovem bela, engraçada, sensível e com um talento raro para dar alcunhas ridículas. Chamava-se... bem, o nome fica para depois.</p>
+
+    <p>“É ela,” pensou o Anacleto. Sem pensar duas vezes foi ter com ela e falou-lhe do Infante que pensava nela ao ver a lua 🌙.</p>
+
+    <p>A princesa, no entanto, tinha sido avisada pelo seu astrólogo que compatibilidade amorosa era coisa séria! Por isso, mesmo que o seu coração já estivesse Infantado, ela mandou três perguntas para avaliar o potencial do seu candidato.</p>
+
+    <p>O Infante está disposto a ser questionado de forma a conseguir conhecer a princesa?</p>
+
+    <div class="quiz">
+      <form id="quizForm">
+        <label><input type="radio" name="answer" value="1"> Não, que seca.</label>
+        <label><input type="radio" name="answer" value="2"> Talvez... se ela for mesmo gira.</label>
+        <label><input type="radio" name="answer" value="3"> Duhhhh, traz-me a minha mulher.</label>
+        <label><input type="radio" name="answer" value="4"> Só se o Anacleto me pagar um gelado.</label>
+        <div class="submit-button">
+          <button type="button" onclick="checkAnswer()">Responder</button>
+        </div>
+        <div class="feedback" id="feedback"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      const feedback = document.getElementById('feedback');
+
+      if (!selected) {
+        feedback.textContent = 'Escolhe uma opção, Infante!';
+        return;
+      }
+
+      if (selected.value === "3") {
+        feedback.innerHTML = '🎉 Boa escolha, Infante! Prepara-te para as Provas do Destino... <br><br><button onclick="location.href=\'pagina4.html\'">Avançar para o Capítulo III</button>';
+      } else {
+        feedback.textContent = 'Hmm… repensa bem, meu nobre. A princesa merece mais entusiasmo!';
+      }
+    }
+  </script>
+</body>
+</html>
