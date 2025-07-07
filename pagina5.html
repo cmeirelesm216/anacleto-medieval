@@ -76,14 +76,11 @@
     <p><strong>“Qual destas prendas o Infante escolhe levar para a princesa na primeira vez que visita o seu reino?”</strong></p>
 
     <div class="quiz">
-      <form id="giftForm">
-        <label><input type="radio" name="gift" value="0"> Um pack de Super Bock com o nome “Miça” rotulado</label>
-        <label><input type="radio" name="gift" value="1"> Um peixe de madeira esculpido com as próprias mãos</label>
-        <label><input type="radio" name="gift" value="0"> Uma playlist de Spotify com só músicas dos Ramones</label>
-        <label><input type="radio" name="gift" value="0"> Uma carta escrita com pena de galinha</label>
-        <button type="button" onclick="checkGift()">Entregar Prenda</button>
-        <div class="feedback" id="feedback"></div>
-      </form>
+      <button onclick="checkAnswer(false)">Um pack de Super Bock com o nome "Miça" rotulado.</button>
+      <button onclick="checkAnswer(true)">Um peixe de madeira esculpido com as próprias mãos.</button>
+      <button onclick="checkAnswer(false)">Uma Playlist de Spotify có com músicas pimba.</button>
+      <button onclick="checkAnswer(false)">Uma carta escrita com pena de pavão.</button>
+      <div class="feedback" id="feedback"></div>
     </div>
   </div>
 
