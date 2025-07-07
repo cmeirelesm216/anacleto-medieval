@@ -6,13 +6,13 @@
   <title>Capítulo III – As Provas do Destino</title>
   <style>
     body {
-      background-color: #f8f5f0;
+      background-color: #f0f8e8;
       font-family: 'Georgia', serif;
       color: #2f2f2f;
       max-width: 900px;
       margin: 80px auto;
       padding: 40px 60px;
-      background: #fffdea;
+      background: #ffffff;
       border-radius: 15px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     }
@@ -129,27 +129,29 @@
 
   <p>Anacleto volta ao Infante com três provas deixadas pela princesa, para ver se há compatibilidade. Por cada resposta certa, ele ganhará uma peça do puzzle, que terá de entragar à princesa para provar que a merece.</p>
 
-  <section class="question" id="prova1">
-    <h2>🧪 Prova 1: O Encontro Perfeito</h2>
-    <p>“Onde levarias a tua princesa no primeiro encontro perfeito?”</p>
-    <div class="choices">
-      <label><input type="radio" name="prova1" value="0" />Um jantar medieval em Sintra</label>
-      <label><input type="radio" name="prova1" value="0" />Um piquenique com poesia no Monsanto</label>
-      <label><input type="radio" name="prova1" value="1" />Lanchar chocapic no Jardim Mário Soares</label>
-      <label><input type="radio" name="prova1" value="0" />Um combate de esgrima seguido de gelado</label>
-    </div>
+<section class="question" id="prova1">
+  <h2>🧪 Prova 1: O Encontro Perfeito</h2>
+  <p>“Onde levarias a tua princesa no primeiro encontro perfeito?”</p>
+  <div class="choices">
+    <label><input type="radio" name="prova1" value="0" />Um jantar medieval em Sintra</label>
+    <label><input type="radio" name="prova1" value="0" />Um piquenique com poesia no Monsanto</label>
+    <label><input type="radio" name="prova1" value="1" />Lanchar chocapic no Jardim Mário Soares</label>
+    <label><input type="radio" name="prova1" value="0" />Um combate de esgrima seguido de gelado</label>
+  </div>
+
+  <button id="submitProva1">Enviar Resposta</button>
+  <p id="feedbackProva1" class="note"></p>
+
+  <div id="comentarioAnacleto" style="display: none;">
     <p class="note">☝️ Anacleto comenta:</p>
     <p>“Sabes, nesse jardim há uma estátua da minha mãe… um pato com seios. Um monumento. Literal e emocionalmente.”</p>
     <img src="mama-do-anacleto.jpg" alt="Estátua da mãe do Anacleto" class="puzzle-image" />
-  </section>
-
-  <section class="question" id="prova2">
-    <h2>🧪 Prova 2: As Qualidades Reais</h2>
-    <p>Liga as qualidades a cada uma das categorias:</p>
+  </div>
+</section>
 
 <section class="question" id="prova2">
   <h2>🧪 Prova 2: As Qualidades Reais</h2>
-  <p>Liga as qualidades à “Plebe” ou à “Tua Princesa”:</p>
+  <p>Liga as qualidades a cada uma das categorias:</p>
 
   <div style="margin-top: 30px;">
     <div class="choices">
@@ -222,6 +224,34 @@
   let correctAnswers = 0;
 
   // Prova 1: valida na submissão da próxima prova
+  document.getElementById('submitProva1').addEventListener('click', () => {
+    const radios = document.getElementsByName('prova1');
+    let selected = null;
+    for (const r of radios) {
+      if (r.checked) {
+        selected = r.value;
+        break;
+      }
+    }
+
+    if (selected === null) {
+      document.getElementById('feedbackProva1').textContent = "Por favor, escolhe uma opção antes de enviar.";
+      return;
+    }
+
+    if (selected === "1") {
+      document.getElementById('feedbackProva1').textContent = "Esse é o sítio certo! Onde tudo começou... e onde há chocapic.";
+      document.getElementById('comentarioAnacleto').style.display = "block";
+      if (!document.getElementById('submitProva1').dataset.counted) {
+        correctAnswers++;
+        document.getElementById('submitProva1').dataset.counted = "true";
+        checkNextButton();
+      }
+    } else {
+      document.getElementById('feedbackProva1').textContent = "Hmm, essa opção não parece ter tanto significado. Tenta outra vez!";
+      document.getElementById('comentarioAnacleto').style.display = "none";
+    }
+  });
 
   // Prova 2: associação de palavras
   document.getElementById('submitAssociacao').addEventListener('click', () => {
