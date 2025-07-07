@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Capítulo IV — A Última Peça</title>
   <style>
     body {
@@ -32,32 +32,27 @@
     .quiz {
       margin-top: 30px;
     }
-    .quiz label {
+    .quiz button {
       display: block;
       margin: 12px 0;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-    button {
-      margin-top: 25px;
       padding: 10px 20px;
-      font-size: 1em;
+      font-size: 1.1em;
       background-color: #6b8e23;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.3s;
+    }
+    .quiz button:hover {
+      background-color: #557a1a;
     }
     .feedback {
       margin-top: 20px;
       font-weight: bold;
-    }
-    .puzzle-image {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      color: #3e5f1b;
     }
   </style>
 </head>
@@ -71,51 +66,50 @@
     <p>A última peça só será concedida se o Infante mostrar criatividade e empenho.<br>
     É altura de levar uma prenda ao Reino da Princesa.</p>
 
-    <img src="puzzle3.jpg" alt="Puzzle com 3 peças" class="puzzle-image">
+    <img src="puzzle3.jpg" alt="Puzzle com 3 peças" class="puzzle-image" style="max-width:300px; display:block; margin:auto; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
 
     <p><strong>“Qual destas prendas o Infante escolhe levar para a princesa na primeira vez que visita o seu reino?”</strong></p>
 
     <div class="quiz">
       <button onclick="checkAnswer(false)">Um pack de Super Bock com o nome "Miça" rotulado.</button>
       <button onclick="checkAnswer(true)">Um peixe de madeira esculpido com as próprias mãos.</button>
-      <button onclick="checkAnswer(false)">Uma Playlist de Spotify có com músicas pimba.</button>
+      <button onclick="checkAnswer(false)">Uma playlist de Spotify com músicas pimba.</button>
       <button onclick="checkAnswer(false)">Uma carta escrita com pena de pavão.</button>
+
       <div class="feedback" id="feedback"></div>
     </div>
   </div>
 
-<script>
-  function checkGift(event) {
-    event.preventDefault(); // impede que o formulário recarregue a página
+  <script>
+    function checkAnswer(isCorrect) {
+      const feedback = document.getElementById('feedback');
+      feedback.innerHTML = ''; // limpa feedback anterior
 
-    const selected = document.querySelector('input[name="gift"]:checked');
-    const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        feedback.innerHTML = 
+          '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada).<br><br>';
 
-    if (!selected) {
-      feedback.textContent = 'Escolhe uma prenda para continuar, ó romântico!';
-      return;
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Avançar para o Capítulo V';
+        nextBtn.style.marginTop = '20px';
+        nextBtn.style.padding = '10px 20px';
+        nextBtn.style.fontSize = '1em';
+        nextBtn.style.backgroundColor = '#3e5f1b';
+        nextBtn.style.color = 'white';
+        nextBtn.style.border = 'none';
+        nextBtn.style.borderRadius = '10px';
+        nextBtn.style.cursor = 'pointer';
+
+        nextBtn.onclick = () => {
+          window.location.href = 'pagina6.html';
+        };
+
+        feedback.appendChild(nextBtn);
+
+      } else {
+        feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça do puzzle... Tenta outra vez!';
+      }
     }
-
-    if (selected.value === "1") {
-      feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br>';
-
-      const nextBtn = document.createElement('button');
-      nextBtn.textContent = 'Avançar para o Capítulo V';
-      nextBtn.style.marginTop = '20px';
-      nextBtn.onclick = () => {
-        window.location.href = 'pagina6.html';
-      };
-      feedback.appendChild(nextBtn);
-    } else {
-      feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
-    }
-  }
-
-  // garantir que o evento é corretamente ligado ao botão
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.querySelector('form button');
-    btn.addEventListener('click', checkGift);
-  });
-</script>
+  </script>
 </body>
 </html>
