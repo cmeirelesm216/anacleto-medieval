@@ -98,7 +98,13 @@
       }
 
       if (selected.value === "1") {
-        feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br><button onclick="location.href=\'pagina6.html\'">Avançar para o Capítulo V</button>';
+feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br>';
+
+const nextBtn = document.createElement('button');
+nextBtn.textContent = 'Avançar para o Capítulo V';
+nextBtn.style.marginTop = '20px';
+nextBtn.onclick = () => window.location.href = './pagina6.html';
+feedback.appendChild(nextBtn);
       } else {
         feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
       }
