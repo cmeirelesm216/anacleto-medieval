@@ -127,7 +127,7 @@
 <body>
   <h1>🧩 Capítulo III – As Provas do Destino</h1>
 
-  <p>Anacleto volta ao Infante com três provas deixadas pela princesa, para ver se há compatibilidade. Por cada uma certa, uma peça do puzzle do coração.</p>
+  <p>Anacleto volta ao Infante com três provas deixadas pela princesa, para ver se há compatibilidade. Por cada resposta certa, ele ganhará uma peça do puzzle, que terá de entragar à princesa para provar que a merece.</p>
 
   <section class="question" id="prova1">
     <h2>🧪 Prova 1: O Encontro Perfeito</h2>
@@ -135,7 +135,7 @@
     <div class="choices">
       <label><input type="radio" name="prova1" value="0" />Um jantar medieval em Sintra</label>
       <label><input type="radio" name="prova1" value="0" />Um piquenique com poesia no Monsanto</label>
-      <label><input type="radio" name="prova1" value="1" />Lanchar chocapic no Jardim Mário Soares ✅</label>
+      <label><input type="radio" name="prova1" value="1" />Lanchar chocapic no Jardim Mário Soares</label>
       <label><input type="radio" name="prova1" value="0" />Um combate de esgrima seguido de gelado</label>
     </div>
     <p class="note">☝️ Anacleto comenta:</p>
@@ -147,24 +147,58 @@
     <h2>🧪 Prova 2: As Qualidades Reais</h2>
     <p>Liga as qualidades a cada uma das categorias:</p>
 
-    <div class="association-grid">
-      <div class="col" id="qualidades">
-        <h3>Qualidades</h3>
-        <div class="association-item" data-qualidade="Bela">Bela</div>
-        <div class="association-item" data-qualidade="Engraçada">Engraçada</div>
-        <div class="association-item" data-qualidade="Loira">Loira</div>
-        <div class="association-item" data-qualidade="Inteligente">Inteligente</div>
-        <div class="association-item" data-qualidade="Carinhosa">Carinhosa</div>
-      </div>
-      <div class="col" id="colunas">
-        <h3>Grupos</h3>
-        <div class="association-item" data-grupo="Princesa">Tua Princesa</div>
-        <div class="association-item" data-grupo="Plebe">Plebe</div>
-      </div>
+<section class="question" id="prova2">
+  <h2>🧪 Prova 2: As Qualidades Reais</h2>
+  <p>Liga as qualidades à “Plebe” ou à “Tua Princesa”:</p>
+
+  <div style="margin-top: 30px;">
+    <div class="choices">
+      <label>
+        Bela:
+        <select data-correto="Princesa">
+          <option value="">-- Escolhe --</option>
+          <option value="Princesa">Tua Princesa</option>
+          <option value="Plebe">Plebe</option>
+        </select>
+      </label>
+      <label>
+        Engraçada:
+        <select data-correto="Princesa">
+          <option value="">-- Escolhe --</option>
+          <option value="Princesa">Tua Princesa</option>
+          <option value="Plebe">Plebe</option>
+        </select>
+      </label>
+      <label>
+        Loira:
+        <select data-correto="Plebe">
+          <option value="">-- Escolhe --</option>
+          <option value="Princesa">Tua Princesa</option>
+          <option value="Plebe">Plebe</option>
+        </select>
+      </label>
+      <label>
+        Inteligente:
+        <select data-correto="Princesa">
+          <option value="">-- Escolhe --</option>
+          <option value="Princesa">Tua Princesa</option>
+          <option value="Plebe">Plebe</option>
+        </select>
+      </label>
+      <label>
+        Carinhosa:
+        <select data-correto="Princesa">
+          <option value="">-- Escolhe --</option>
+          <option value="Princesa">Tua Princesa</option>
+          <option value="Plebe">Plebe</option>
+        </select>
+      </label>
     </div>
-    <button id="submitAssociacao">Enviar Respostas</button>
-    <p id="feedbackAssociacao" class="note"></p>
-  </section>
+  </div>
+
+  <button id="submitAssociacao">Enviar Respostas</button>
+  <p id="feedbackAssociacao" class="note"></p>
+</section>
 
   <section class="question" id="prova3">
     <h2>🧪 Prova 3: A Alcunha do Coração</h2>
@@ -190,65 +224,37 @@
   // Prova 1: valida na submissão da próxima prova
 
   // Prova 2: associação de palavras
-  const qualidades = document.querySelectorAll('#qualidades .association-item');
-  const colunas = document.querySelectorAll('#colunas .association-item');
-  let selectedQualidade = null;
-  let selectedGrupo = null;
-
-  qualidades.forEach(item => {
-    item.addEventListener('click', () => {
-      qualidades.forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      selectedQualidade = item.getAttribute('data-qualidade');
-    });
-  });
-
-  colunas.forEach(item => {
-    item.addEventListener('click', () => {
-      colunas.forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      selectedGrupo = item.getAttribute('data-grupo');
-    });
-  });
-
   document.getElementById('submitAssociacao').addEventListener('click', () => {
-    if (!selectedQualidade || !selectedGrupo) {
-      document.getElementById('feedbackAssociacao').textContent = "Por favor, selecione uma qualidade e um grupo antes de enviar.";
+    const selects = document.querySelectorAll('#prova2 select');
+    let todasPreenchidas = true;
+    let todasCertas = true;
+
+    selects.forEach(select => {
+      const resposta = select.value;
+      const correto = select.getAttribute('data-correto');
+      if (resposta === "") {
+        todasPreenchidas = false;
+      } else if (resposta !== correto) {
+        todasCertas = false;
+      }
+    });
+
+    if (!todasPreenchidas) {
+      document.getElementById('feedbackAssociacao').textContent = "Faltam responder algumas qualidades!";
       return;
     }
-    // Resposta certa: tudo "Princesa" exceto "Loira" = "Plebe"
-    const correta = (selectedQualidade === "Loira" && selectedGrupo === "Plebe") ||
-                    (selectedQualidade !== "Loira" && selectedGrupo === "Princesa");
-    if (correta) {
+
+    if (todasCertas) {
       document.getElementById('feedbackAssociacao').textContent = "Hmmm… bom olho, Infante. Bom olho e bom gosto.";
-      correctAnswers++;
-      checkNextButton();
-      // Desabilita a qualidade e grupo para não responder outra vez
-      disableSelectedAssociation();
+      if (!document.getElementById('submitAssociacao').dataset.counted) {
+        correctAnswers++;
+        document.getElementById('submitAssociacao').dataset.counted = "true";
+        checkNextButton();
+      }
     } else {
       document.getElementById('feedbackAssociacao').textContent = "Hmm, essa não é bem a combinação certa. Tenta outra vez!";
     }
   });
-
-  function disableSelectedAssociation() {
-    qualidades.forEach(i => {
-      if (i.classList.contains('selected')) {
-        i.style.pointerEvents = 'none';
-        i.style.opacity = '0.5';
-        i.classList.remove('selected');
-      }
-    });
-    colunas.forEach(i => {
-      if (i.classList.contains('selected')) {
-        i.style.pointerEvents = 'none';
-        i.style.opacity = '0.5';
-        i.classList.remove('selected');
-      }
-    });
-    // Reset para nova seleção
-    selectedQualidade = null;
-    selectedGrupo = null;
-  }
 
   // Prova 3
   document.getElementsByName('prova1').forEach(radio => {
