@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capítulo III – As Provas do Destino</title>
+  <style>
+    body {
+      background-color: #f8f5f0;
+      font-family: 'Georgia', serif;
+      color: #2f2f2f;
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 40px 60px;
+      background: #fffdea;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+    h1 {
+      text-align: center;
+      color: #3e5f1b;
+      margin-bottom: 20px;
+      font-size: 2.2em;
+    }
+    h2 {
+      color: #6b8e23;
+      margin-top: 40px;
+      font-size: 1.6em;
+    }
+    p {
+      font-size: 1.15em;
+      line-height: 1.6em;
+      margin: 15px 0;
+    }
+    .question {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .choices {
+      margin-top: 10px;
+    }
+    label {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      padding: 10px 25px;
+      font-size: 1.1em;
+      background-color: #6b8e23;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #4d6e18;
+    }
+    #feedback {
+      margin-top: 15px;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #3e5f1b;
+      text-align: center;
+    }
+    .note {
+      font-style: italic;
+      color: #555;
+      margin-top: 15px;
+    }
+    .puzzle-image {
+      display: block;
+      margin: 15px auto 25px;
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .association-grid {
+      display: flex;
+      justify-content: space-between;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .col {
+      width: 45%;
+      background: #e6f1d3;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 1.1em;
+    }
+    .col h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #4a6a1f;
+    }
+    .association-item {
+      margin-bottom: 10px;
+      cursor: pointer;
+      user-select: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background-color: #fff;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+    .association-item:hover {
+      background-color: #d1e0a1;
+    }
+    .selected {
+      background-color: #a6c24b !important;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧩 Capítulo III – As Provas do Destino</h1>
+
+  <p>Anacleto volta ao Infante com três provas deixadas pela princesa, para ver se há compatibilidade. Por cada uma certa, uma peça do puzzle do coração.</p>
+
+  <section class="question" id="prova1">
+    <h2>🧪 Prova 1: O Encontro Perfeito</h2>
+    <p>“Onde levarias a tua princesa no primeiro encontro perfeito?”</p>
+    <div class="choices">
+      <label><input type="radio" name="prova1" value="0" />Um jantar medieval em Sintra</label>
+      <label><input type="radio" name="prova1" value="0" />Um piquenique com poesia no Monsanto</label>
+      <label><input type="radio" name="prova1" value="1" />Lanchar chocapic no Jardim Mário Soares ✅</label>
+      <label><input type="radio" name="prova1" value="0" />Um combate de esgrima seguido de gelado</label>
+    </div>
+    <p class="note">☝️ Anacleto comenta:</p>
+    <p>“Sabes, nesse jardim há uma estátua da minha mãe… um pato com seios. Um monumento. Literal e emocionalmente.”</p>
+    <img src="mama-do-anacleto.jpg" alt="Estátua da mãe do Anacleto" class="puzzle-image" />
+  </section>
+
+  <section class="question" id="prova2">
+    <h2>🧪 Prova 2: As Qualidades Reais</h2>
+    <p>Liga as qualidades a cada uma das categorias:</p>
+
+    <div class="association-grid">
+      <div class="col" id="qualidades">
+        <h3>Qualidades</h3>
+        <div class="association-item" data-qualidade="Bela">Bela</div>
+        <div class="association-item" data-qualidade="Engraçada">Engraçada</div>
+        <div class="association-item" data-qualidade="Loira">Loira</div>
+        <div class="association-item" data-qualidade="Inteligente">Inteligente</div>
+        <div class="association-item" data-qualidade="Carinhosa">Carinhosa</div>
+      </div>
+      <div class="col" id="colunas">
+        <h3>Grupos</h3>
+        <div class="association-item" data-grupo="Princesa">Tua Princesa</div>
+        <div class="association-item" data-grupo="Plebe">Plebe</div>
+      </div>
+    </div>
+    <button id="submitAssociacao">Enviar Respostas</button>
+    <p id="feedbackAssociacao" class="note"></p>
+  </section>
+
+  <section class="question" id="prova3">
+    <h2>🧪 Prova 3: A Alcunha do Coração</h2>
+    <p>“Qual destas alcunhas devias dar à princesa?”</p>
+    <div class="choices">
+      <label><input type="radio" name="prova3" value="0" />Miss</label>
+      <label><input type="radio" name="prova3" value="0" />Moça</label>
+      <label><input type="radio" name="prova3" value="1" />Miça</label>
+      <label><input type="radio" name="prova3" value="0" />Bebé</label>
+    </div>
+    <button id="submitProva3">Enviar Resposta</button>
+    <p id="feedbackProva3" class="note"></p>
+  </section>
+
+  <div class="next-button" style="text-align:center; margin-top: 50px;">
+    <button id="nextButton" disabled>Avançar para o Capítulo IV</button>
+  </div>
+
+<script>
+  // Controle do progresso das respostas certas
+  let correctAnswers = 0;
+
+  // Prova 1: valida na submissão da próxima prova
+
+  // Prova 2: associação de palavras
+  const qualidades = document.querySelectorAll('#qualidades .association-item');
+  const colunas = document.querySelectorAll('#colunas .association-item');
+  let selectedQualidade = null;
+  let selectedGrupo = null;
+
+  qualidades.forEach(item => {
+    item.addEventListener('click', () => {
+      qualidades.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedQualidade = item.getAttribute('data-qualidade');
+    });
+  });
+
+  colunas.forEach(item => {
+    item.addEventListener('click', () => {
+      colunas.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedGrupo = item.getAttribute('data-grupo');
+    });
+  });
+
+  document.getElementById('submitAssociacao').addEventListener('click', () => {
+    if (!selectedQualidade || !selectedGrupo) {
+      document.getElementById('feedbackAssociacao').textContent = "Por favor, selecione uma qualidade e um grupo antes de enviar.";
+      return;
+    }
+    // Resposta certa: tudo "Princesa" exceto "Loira" = "Plebe"
+    const correta = (selectedQualidade === "Loira" && selectedGrupo === "Plebe") ||
+                    (selectedQualidade !== "Loira" && selectedGrupo === "Princesa");
+    if (correta) {
+      document.getElementById('feedbackAssociacao').textContent = "Hmmm… bom olho, Infante. Bom olho e bom gosto.";
+      correctAnswers++;
+      checkNextButton();
+      // Desabilita a qualidade e grupo para não responder outra vez
+      disableSelectedAssociation();
+    } else {
+      document.getElementById('feedbackAssociacao').textContent = "Hmm, essa não é bem a combinação certa. Tenta outra vez!";
+    }
+  });
+
+  function disableSelectedAssociation() {
+    qualidades.forEach(i => {
+      if (i.classList.contains('selected')) {
+        i.style.pointerEvents = 'none';
+        i.style.opacity = '0.5';
+        i.classList.remove('selected');
+      }
+    });
+    colunas.forEach(i => {
+      if (i.classList.contains('selected')) {
+        i.style.pointerEvents = 'none';
+        i.style.opacity = '0.5';
+        i.classList.remove('selected');
+      }
+    });
+    // Reset para nova seleção
+    selectedQualidade = null;
+    selectedGrupo = null;
+  }
+
+  // Prova 3
+  document.getElementsByName('prova1').forEach(radio => {
+    radio.addEventListener('change', () => {
+      // Se selecionar opção certa, incrementa correctAnswers e desativa depois para não recontar
+      if (radio.value === "1") {
+        if (!radio.dataset.counted) {
+          correctAnswers++;
+          radio.dataset.counted = "true";
+          checkNextButton();
+        }
+      } else {
+        // se mudar para outra errada, desconta a anterior (se contada)
+        const previouslyCounted = Array.from(document.getElementsByName('prova1')).find(r => r.dataset.counted === "true");
+        if (previouslyCounted) {
+          correctAnswers--;
+          previouslyCounted.dataset.counted = "";
+          checkNextButton();
+        }
+      }
+    });
+  });
+
+  document.getElementById('submitProva3').addEventListener('click', () => {
+    const radios = document.getElementsByName('prova3');
+    let selected = null;
+    for (const r of radios) {
+      if (r.checked) {
+        selected = r.value;
+        break;
+      }
+    }
+    if (selected === null) {
+      document.getElementById('feedbackProva3').textContent = "Por favor, escolhe uma opção antes de enviar.";
+      return;
+    }
+    if (selected === "1") {
+      document.getElementById('feedbackProva3').textContent = "Uma alcunha acidental - e única - é sinal do destino. E do miolo meio solto, como ela gosta.";
+      if (!document.getElementById('submitProva3').dataset.counted) {
+        correctAnswers++;
+        document.getElementById('submitProva3').dataset.counted = "true";
+        checkNextButton();
+      }
+    } else {
+      document.getElementById('feedbackProva3').textContent = "Hmm, essa não é a alcunha certa. Tenta outra vez!";
+    }
+  });
+
+  function checkNextButton() {
+    if (correctAnswers >= 3) {
+      document.getElementById('nextButton').disabled = false;
+    } else {
+      document.getElementById('nextButton').disabled = true;
+    }
+  }
+  document.getElementById('nextButton').addEventListener('click', () => {
+    window.location.href = 'pagina5.html';
+  });
+</script>
+</body>
+</html>
