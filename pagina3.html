@@ -71,33 +71,21 @@
     <p>O Infante está disposto a ser questionado de forma a conseguir conhecer a princesa?</p>
 
     <div class="quiz">
-      <form id="quizForm">
-        <label><input type="radio" name="answer" value="1"> Não, que seca.</label>
-        <label><input type="radio" name="answer" value="2"> Talvez... se ela for mesmo gira.</label>
-        <label><input type="radio" name="answer" value="3"> Duhhhh, traz-me a minha mulher.</label>
-        <label><input type="radio" name="answer" value="4"> Só se o Anacleto me pagar um gelado.</label>
-        <div class="submit-button">
-          <button type="button" onclick="checkAnswer()">Responder</button>
-        </div>
-        <div class="feedback" id="feedback"></div>
-      </form>
+      <button onclick="checkAnswer(false)">Não, que seca.</button>
+      <button onclick="checkAnswer(false)">Talvez... se ela for mesmo gira.</button>
+      <button onclick="checkAnswer(true)">Duhhhh, traz-me a minha mulher.</button>
+      <button onclick="checkAnswer(false)">Só se o Anacleto me pagar um gelado.</button>
+      <div class="feedback" id="feedback"></div>
     </div>
   </div>
 
   <script>
-    function checkAnswer() {
-      const selected = document.querySelector('input[name="answer"]:checked');
+    function checkAnswer(isCorrect) {
       const feedback = document.getElementById('feedback');
-
-      if (!selected) {
-        feedback.textContent = 'Escolhe uma opção, Infante!';
-        return;
-      }
-
-      if (selected.value === "3") {
+      if (isCorrect) {
         feedback.innerHTML = '🎉 Boa escolha, Infante! Prepara-te para as Provas do Destino... <br><br><button onclick="location.href=\'pagina4.html\'">Avançar para o Capítulo III</button>';
       } else {
-        feedback.textContent = 'Hmm… repensa bem, meu nobre. A princesa merece mais entusiasmo!';
+        feedback.textContent = 'Hmm... repensa bem, meu nobre. A princesa merece mais entusiasmo!';
       }
     }
   </script>
