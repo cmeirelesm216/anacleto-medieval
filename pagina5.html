@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo IV — A Última Peça</title>
+  <style>
+    body {
+      background-color: #f8f5f0;
+      font-family: 'Georgia', serif;
+      color: #2f2f2f;
+      padding: 40px;
+    }
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background-color: #ffffffdd;
+      padding: 50px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #3e5f1b;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.7em;
+      margin-bottom: 20px;
+    }
+    .quiz {
+      margin-top: 30px;
+    }
+    .quiz label {
+      display: block;
+      margin: 12px 0;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    button {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #6b8e23;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .puzzle-image {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧩 Capítulo IV — A Última Peça</h1>
+
+    <p>Com 3 peças de 4 do puzzle conquistadas, o Anacleto informa:</p>
+    <p><em>“Bravo, nobre Tiago. Mas... falta a peça final — aquela que provará à princesa que és realmente diferente de toda a gente que ela conheceu até agora.”</em></p>
+
+    <p>A última peça só será concedida se o Infante mostrar criatividade e empenho.<br>
+    É altura de levar uma prenda ao Reino da Princesa.</p>
+
+    <img src="puzzle3.jpg" alt="Puzzle com 3 peças" class="puzzle-image">
+
+    <p><strong>“Qual destas prendas o Infante escolhe levar para a princesa na primeira vez que visita o seu reino?”</strong></p>
+
+    <div class="quiz">
+      <form id="giftForm">
+        <label><input type="radio" name="gift" value="0"> Um pack de Super Bock com o nome “Miça” rotulado</label>
+        <label><input type="radio" name="gift" value="1"> Um peixe de madeira esculpido com as próprias mãos</label>
+        <label><input type="radio" name="gift" value="0"> Uma playlist de Spotify com só músicas dos Ramones</label>
+        <label><input type="radio" name="gift" value="0"> Uma carta escrita com pena de galinha</label>
+        <button type="button" onclick="checkGift()">Entregar Prenda</button>
+        <div class="feedback" id="feedback"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function checkGift() {
+      const selected = document.querySelector('input[name="gift"]:checked');
+      const feedback = document.getElementById('feedback');
+
+      if (!selected) {
+        feedback.textContent = 'Escolhe uma prenda para continuar, ó romântico!';
+        return;
+      }
+
+      if (selected.value === "1") {
+        feedback.innerHTML = '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada). <br><br><button onclick="location.href=\'pagina6.html\'">Avançar para o Capítulo V</button>';
+      } else {
+        feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
+      }
+    }
+  </script>
+</body>
+</html>
