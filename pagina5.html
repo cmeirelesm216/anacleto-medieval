@@ -71,45 +71,36 @@
     <p><strong>“Qual destas prendas o Infante escolhe levar para a princesa na primeira vez que visita o seu reino?”</strong></p>
 
     <div class="quiz">
-      <button onclick="checkAnswer(false)">Um pack de Super Bock com o nome "Miça" rotulado.</button>
-      <button onclick="checkAnswer(true)">Um peixe de madeira esculpido com as próprias mãos.</button>
-      <button onclick="checkAnswer(false)">Uma playlist de Spotify com músicas pimba.</button>
-      <button onclick="checkAnswer(false)">Uma carta escrita com pena de pavão.</button>
+      <button id="btn1">Um pack de Super Bock com o nome "Miça" rotulado.</button>
+      <button id="btn2">Um peixe de madeira esculpido com as próprias mãos.</button>
+      <button id="btn3">Uma playlist de Spotify com músicas pimba.</button>
+      <button id="btn4">Uma carta escrita com pena de pavão.</button>
 
       <div class="feedback" id="feedback"></div>
     </div>
   </div>
 
   <script>
-    function checkAnswer(isCorrect) {
-      const feedback = document.getElementById('feedback');
-      feedback.innerHTML = ''; // limpa feedback anterior
+    const feedback = document.getElementById('feedback');
 
-      if (isCorrect) {
-        feedback.innerHTML = 
-          '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada).<br><br>';
+    document.getElementById('btn1').onclick = () => {
+      feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
+    };
+    document.getElementById('btn2').onclick = () => {
+      feedback.innerHTML = 
+        '🎁 Lindo gesto, Infante! A princesa ficará encantada (ou melhor, infantada).<br><br>' +
+        '<button id="nextBtn">Avançar para o Capítulo V</button>';
 
-        const nextBtn = document.createElement('button');
-        nextBtn.textContent = 'Avançar para o Capítulo V';
-        nextBtn.style.marginTop = '20px';
-        nextBtn.style.padding = '10px 20px';
-        nextBtn.style.fontSize = '1em';
-        nextBtn.style.backgroundColor = '#3e5f1b';
-        nextBtn.style.color = 'white';
-        nextBtn.style.border = 'none';
-        nextBtn.style.borderRadius = '10px';
-        nextBtn.style.cursor = 'pointer';
-
-        nextBtn.onclick = () => {
-          window.location.href = 'pagina6.html';
-        };
-
-        feedback.appendChild(nextBtn);
-
-      } else {
-        feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça do puzzle... Tenta outra vez!';
-      }
-    }
+      document.getElementById('nextBtn').onclick = () => {
+        window.location.href = 'pagina6.html';
+      };
+    };
+    document.getElementById('btn3').onclick = () => {
+      feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
+    };
+    document.getElementById('btn4').onclick = () => {
+      feedback.textContent = 'Hmm… essa prenda talvez não seja digna de conquistar a última peça... Tenta outra vez!';
+    };
   </script>
 </body>
 </html>
